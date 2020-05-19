@@ -3,62 +3,62 @@ package GoFo;
 public class User
 {
     private int id ;
-    private string name,pass,email,phone,d_loc,type;
+    private String name,pass,email,phone,d_loc,type;
     private ewallet wallet;
     public void set_id(int ID)
     {
         id =ID;
     }
-    public void set_name(string Name)
+    public void set_name(String Name)
     {
         name =Name;
     }
-    public void set_pass(string password)
+    public void set_pass(String password)
     {
          pass=password;
     }
-    public void set_email(string Email)
+    public void set_email(String Email)
     {
         email =Email;
     }
-    public void set_phone(string Phone)
+    public void set_phone(String Phone)
     {
         phone =Phone;
     }
-    public void set_loc(string locaton)
+    public void set_loc(String locaton)
     {
         d_loc =locaton;
     }
-    public void set_type(string TYPE)
+    public void set_type(String TYPE)
     {
-        typee =TYPE;
+        type =TYPE;
     }
     //GETTER
     public int getId() {
         return id;
     }
 
-    public string getName() {
+    public String getName() {
         return name;
     }
 
-    public string getPass() {
+    public String getPass() {
         return pass;
     }
 
-    public string getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public string getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public string getD_loc() {
+    public String getD_loc() {
         return d_loc;
     }
 
-    public string getType() {
+    public String getType() {
         return type;
     }
 }
