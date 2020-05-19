@@ -9,13 +9,8 @@ public class GUI {
     Scanner int_scan ;
     Scanner string_scan;
     Scanner float_scan;
-    @Struct
-    public static class book_record {
-        public String player_name, playground_name, playground_owner_name;
-        public int ava_hrs;
-        float total = o;
-    }
-    public Vector<book_record> bookings;
+
+    //public Vector<book_record> bookings;
     public boolean SignIn(String email,String Password){
 
         return true;

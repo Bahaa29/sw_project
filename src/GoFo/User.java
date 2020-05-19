@@ -4,7 +4,7 @@ public class User
 {
     private int id ;
     private String name,pass,email,phone,d_loc,type;
-    private ewallet wallet;
+    public eWallet wallet;
     public void set_id(int ID)
     {
         id =ID;

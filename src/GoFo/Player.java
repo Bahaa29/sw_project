@@ -12,19 +12,19 @@ public class Player extends User {
     }
     public String display_nearest_playground()
     {
-
+        return null;
     }
     public String display_playground(String location)
     {
-
+        return null;
     }
     public String display_nearest_playground(String date, String hours)
     {
-
+        return null;
     }
     public boolean check_available_timeslot(String timeslot)
     {
-
+        return true;
     }
     public void pay(float amount)
     {
@@ -38,7 +38,7 @@ public class Player extends User {
     {
 
     }
-    void show_all_playgrounds()
+    public void show_all_playgrounds()
     {
 
     }
