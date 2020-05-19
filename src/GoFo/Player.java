@@ -1,8 +1,12 @@
 package GOFO;
 
-public class Player {
-    private String[] my_bookings = new String[20];
-    public void book_playground(String playground_name, String hours, String date)
+import GoFo.User;
+
+import java.util.Vector;
+
+public class Player extends User {
+
+    public void book_playground(String playground_name, int hours, String date)
     {
 
     }

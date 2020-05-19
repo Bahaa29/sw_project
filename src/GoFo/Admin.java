@@ -1,6 +1,6 @@
 package GoFo;
 
-public class Admin
+public class Admin extends User
 {
     public void Approve_playground(string name)
     {

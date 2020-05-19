@@ -1,8 +1,8 @@
 package GoFo;
 
 public class Playground{
-    private String name,location,available_hours,status;
-    private int size;
+    private String name,location,status;
+    private int size, available_hours;
     private float price_per_hour,cancelation_period;
 
     public String getName() {
@@ -21,11 +21,11 @@ public class Playground{
         this.location = location;
     }
 
-    public String getAvailable_hours() {
+    public int getAvailable_hours() {
         return available_hours;
     }
 
-    public void setAvailable_hours(String available_hours) {
+    public void setAvailable_hours(int available_hours) {
         this.available_hours = available_hours;
     }
 

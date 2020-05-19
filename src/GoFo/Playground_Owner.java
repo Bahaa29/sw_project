@@ -2,10 +2,10 @@ package GoFo;
 
 import java.util.Vector;
 
-public class Playground_Owner{
-    private Vector<Playground> myplaygrounds[];
+public class Playground_Owner extends User{
+    //private Vector<Playground> myplaygrounds;
     void Add_playground_request(Playground play){
-
+        myplaygrounds.addElement(play);
     }
     void set_available_hours(String hours){
 
