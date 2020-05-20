@@ -1,5 +1,4 @@
 package GoFo;
-import java.sql.Struct;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -126,7 +125,7 @@ public class GUI {
                                             play.setStatus("Waiting");
                                             play.setAvailable_hours(0);
                                             //get owner name from user vector
-                                            for(int i=0;i<all_users.size();i++){
+                                            for(i=0;i<all_users.size();i++){
                                                 if(all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)){
                                                     play.setOwner(all_users.elementAt(i).getName());
                                                 }
@@ -162,6 +161,28 @@ public class GUI {
                                 else
                                 {
                                     System.out.println("You Entered Wrong Choice");
+                                }
+
+                            }
+                            else if (Current_User_type.equalsIgnoreCase("Admin"))
+                            {
+                                Admin my_admin = new Admin;
+                                System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
+                                choice = int_scan.nextInt();
+                                if (choice >= 1 && choice <=3)
+                                {
+                                    switch(choice)
+                                    {
+                                        case 1:
+                                            my_admin.Approve_playground(all_playground);
+                                            break;
+                                        case 2:
+                                            my_admin.suspend_playground(all_playground);
+                                            break;
+                                        case 3:
+                                            my_admin.delete_playground(all_playground);
+                                            break;
+                                    }
                                 }
 
                             }
