@@ -1,6 +1,4 @@
-package GOFO;
-
-import GoFo.User;
+package GoFo;
 
 import java.util.Vector;
 

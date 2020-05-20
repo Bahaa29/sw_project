@@ -5,6 +5,7 @@ public class User
     private int id ;
     private String name,pass,email,phone,d_loc,type;
     public eWallet wallet;
+
     public void set_id(int ID)
     {
         id =ID;
@@ -29,9 +30,9 @@ public class User
     {
         d_loc =locaton;
     }
-    public void set_type(String TYPE)
+    public void set_type(String t)
     {
-        type =TYPE;
+        type =t;
     }
     //GETTER
     public int getId() {

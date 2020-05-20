@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Playground_Owner extends User{
     void Add_playground_request(Vector<Playground> ALL ,Playground play){
-        ALL.addElement(play);
+        ALL.add(play);
     }
     void set_available_hours(int hours ,Vector<Playground> ALL){
         System.out.println("Enter Playground Name: ");
