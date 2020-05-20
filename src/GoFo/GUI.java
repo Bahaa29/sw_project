@@ -164,6 +164,28 @@ public class GUI {
                                 }
 
                             }
+                            else if (Current_User_type.equalsIgnoreCase("Admin"))
+                            {
+                                Admin my_admin = new Admin;
+                                System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
+                                choice = int_scan.nextInt();
+                                if (choice >= 1 && choice <=3)
+                                {
+                                    switch(choice)
+                                    {
+                                        case 1:
+                                            my_admin.Approve_playground(all_playground);
+                                            break;
+                                        case 2:
+                                            my_admin.suspend_playground(all_playground);
+                                            break;
+                                        case 3:
+                                            my_admin.delete_playground(all_playground);
+                                            break;
+                                    }
+                                }
+
+                            }
                         }
                         break;
                     case 2:
