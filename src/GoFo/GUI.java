@@ -1,5 +1,4 @@
 package GoFo;
-import java.sql.Struct;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -126,7 +125,7 @@ public class GUI {
                                             play.setStatus("Waiting");
                                             play.setAvailable_hours(0);
                                             //get owner name from user vector
-                                            for(int i=0;i<all_users.size();i++){
+                                            for(i=0;i<all_users.size();i++){
                                                 if(all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)){
                                                     play.setOwner(all_users.elementAt(i).getName());
                                                 }

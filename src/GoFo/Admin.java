@@ -27,6 +27,7 @@ public class Admin extends User
         ALL.elementAt(choice-1).setStatus("approved");
         System.out.println("This playground approved successfully");
     }
+
     /**
      * Suspend playground function
      * This function let the admin to suspend specific playground for some reason
@@ -45,8 +46,20 @@ public class Admin extends User
         ALL.elementAt(choice-1).setStatus("suspended");
         System.out.println("This playground suspended successfully");
     }
+
+    /**
+     * Delete playground function
+     * This function let the admin delete a playground completely
+     * @param ALL This Vector Store All Playgrounds In the System
+     */
     public void delete_playground(Vector<Playground> ALL)
     {
-        
+        for (int i = 0; i < ALL.size(); i++)
+        {
+            System.out.println((i+1) + " - playground name:  " + ALL.elementAt(i).getName() + " - owner: " + ALL.elementAt(i).getOwner());
+        }
+        System.out.println("Enter number of playground you want to delete: ");
+        choice = scan.nextInt();
+        ALL.remove(choice-1);
     }
 }
