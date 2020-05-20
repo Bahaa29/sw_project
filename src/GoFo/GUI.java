@@ -213,6 +213,10 @@ public class GUI {
                                 }
 
                             }
+                        else if (Current_User_type.equalsIgnoreCase("Player"))
+                        {
+
+                        }
                         break;
                     case 2:
                         //Register

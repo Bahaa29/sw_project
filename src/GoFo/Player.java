@@ -4,7 +4,12 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class Player extends User {
-
+    /**
+     * this function for make player able to book playground
+     * @param ADD this a class for booking a make vector for this class to store the booking
+     * @param All the vector to find all playground
+     * @param all_users vector for all information of all user
+     */
     public void book_playground(Vector<Booking_Struct> ADD,Vector<Playground> All,Vector<User> all_users)
     {
         Booking_Struct obj=new Booking_Struct();
@@ -55,18 +60,78 @@ public class Player extends User {
             }
         }
     }
-    public String display_nearest_playground()
+
+    /**
+     * function to find all playground nearest player
+     * @param ur_location the location of player
+     * @param All vector of playground
+     * @return the playground name
+     */
+    public String display_nearest_playground(String ur_location,Vector<Playground> All)
     {
+        for(int i=0;i<All.size();i++)
+        {
+            if(All.elementAt(i).getLocation().equalsIgnoreCase(ur_location))
+                return  All.elementAt(i).getName();
+        }
+        return null;
+
+    }
+
+    /**
+     * function to show the playground by location
+     * @param location the location of playgroun
+     * @param All vector of all playground
+     * @return the names of playground
+     */
+    public String display_playground(String location,Vector<Playground> All)
+    {
+        for(int i=0;i<All.size();i++)
+        {
+            if(All.elementAt(i).getLocation().equalsIgnoreCase(location))
+                return  All.elementAt(i).getName();
+        }
         return null;
     }
-    public String display_playground(String location)
+
+    /**
+     * this function for find all playgrounds that have available hours for the player
+     * @param hours the hours that player want
+     * @param All vector of playground
+     * @return name of playground
+     */
+    public String display_nearest_playground(int hours,Vector<Playground> All)
     {
+        for(int i=0;i<All.size();i++)
+        {
+            if(All.elementAt(i).getAvailable_hours()>=hours)
+                return  All.elementAt(i).getName();
+        }
         return null;
     }
-    public String display_nearest_playground(String date, String hours)
+
+    /**
+     * function to show all playground
+     * @param All vector of all play ground
+     */
+    public void show_all_playgrounds(Vector<Playground> All)
     {
-        return null;
+        for(int i=0;i<All.size();i++)
+        {
+            System.out.println(All.elementAt(i).getName()+"-");
+        }
     }
+
+    /**
+     * check to find to check the available time for specific playground
+     * @param Date the date that player want to check available_timeslot
+     * @param ADD vector of booking for players
+     * @param All vector of all playground
+     * @param playground_owner
+     * @param playground_name
+     * @param hours the number of hours that i want check with
+     * @return true(there are) false(no)
+     */
     public boolean check_available_timeslot(String Date,Vector<Booking_Struct> ADD,Vector<Playground> All,String playground_owner, String playground_name,int hours)
     {
         int counter=0;
@@ -94,6 +159,15 @@ public class Player extends User {
             return  true;
 
     }
+
+    /**
+     * function for pay the many to playground owner
+     * @param amount the amount for booking this playground
+     * @param all_users vector of all information of all user
+     * @param player_name
+     * @param owner_Name the playground owner name
+     * @return true=have enough many, false=didn not have
+     */
     public boolean pay(float amount,Vector<User> all_users,String player_name,String owner_Name)
     {
         float price=0;
@@ -126,19 +200,6 @@ public class Player extends User {
     {
 
     }
-    public void cancel_booking(String playground_name, String date, Vector<Booking_Struct> all_bookings)
-    {
-        for (int i = 0; i < all_bookings.size(); i++)
-        {
-            if (all_bookings.elementAt(i).getPlayground_name().equalsIgnoreCase(playground_name) && all_bookings.elementAt(i).getDate().equalsIgnoreCase(date));
-        }
-    }
-    public void show_all_playgrounds(Vector<Playground> All)
-    {
-        for(int i=0;i<All.size();i++)
-        {
-            System.out.println(All.elementAt(i).getName()+"-");
-        }
-    }
+
 
 }
