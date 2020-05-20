@@ -5,6 +5,7 @@ public class Booking_Struct
  private String player_name,playground_name,playground_owner;
  private int hours;
  private float total;
+ private String date;
     public String getPlayer_name() {
         return player_name;
     }
@@ -44,4 +45,13 @@ public class Booking_Struct
     public void setTotal(float total) {
         this.total = total;
     }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String  getDate() {
+        return date;
+    }
+
 }
