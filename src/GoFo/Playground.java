@@ -1,7 +1,7 @@
 package GoFo;
 
 public class Playground{
-    private String name,location,status;
+    private String name,location,status,owner;
     private int size, available_hours;
     private float price_per_hour,cancelation_period;
 
@@ -11,6 +11,14 @@ public class Playground{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getLocation() {

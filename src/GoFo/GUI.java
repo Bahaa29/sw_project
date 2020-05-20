@@ -105,7 +105,7 @@ public class GUI {
                                 int_scan = new Scanner(System.in);
                                 choice = int_scan.nextInt();
 
-                                if (choice >= 1 || choice <=4)
+                                if (choice >= 1 && choice <=4)
                                 {
                                     Playground play = new Playground();
                                     float f;int i;String in;
@@ -114,7 +114,7 @@ public class GUI {
                                             //add playground request
                                             string_scan = new Scanner(System.in);
                                             System.out.println("Enter playground name");
-                                            in = string_scan.next();
+                                            in = string_scan.nextLine();
                                             play.setName(in);
                                             System.out.println("Enter playground location");
                                             in = string_scan.next();
@@ -124,6 +124,13 @@ public class GUI {
                                             play.setSize(choice);
 
                                             play.setStatus("Waiting");
+                                            play.setAvailable_hours(0);
+                                            //get owner name from user vector
+                                            for(int i=0;i<all_users.size();i++){
+                                                if(all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)){
+                                                    play.setOwner(all_users.elementAt(i).getName());
+                                                }
+                                            }
                                             System.out.println("Enter price per hour");
                                             float_scan = new Scanner(System.in);
                                             f = float_scan.nextFloat();
@@ -133,8 +140,6 @@ public class GUI {
                                             play.setCancelation_period(f);
 
                                             owner.Add_playground_request(all_playground ,play);
-                                            //all_playground.addElement(play);
-                                            System.out.println(all_playground.elementAt(0).getName());
                                             break;
                                         case 2:
                                             //set available hours
