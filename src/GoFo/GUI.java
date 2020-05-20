@@ -15,9 +15,10 @@ public class GUI {
         //Sign In
         String m,p;
         for (int i=0 ; i<all_users.size();i++){
-            m=all_users.elementAt(i).getEmail();
-            p=all_users.elementAt(i).getPass();
-            if(m == email &&  p== Password ){
+            m=all_users.elementAt(i).getEmail().toString();
+            p=all_users.elementAt(i).getPass().toString();
+            System.out.println(m + "\n" + p);
+            if(m == email){
                 Current_User_type = all_users.elementAt(i).getType();
                 return true;
             }
