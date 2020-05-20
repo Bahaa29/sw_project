@@ -10,6 +10,14 @@ public class GUI {
     private Scanner int_scan ;
     private Scanner string_scan;
     private Scanner float_scan;
+
+    /**
+     * Sign in function
+     * This function to check the validation of users' and sign them in
+     * @param email the email of the user that trying to sign in
+     * @param Password the password of the user trying to sign in
+     * @return
+     */
     private boolean SignIn(String email,String Password){
         //Sign In
         String m,p;
@@ -25,10 +33,16 @@ public class GUI {
         }
         return false;
     }
+
+    /**
+     * Register function
+     * This function take user's information who enter the app for first time
+     */
     private void Register()
     {
         User temp = new User();
-        String tmp;int i;
+        String tmp;
+        int i;
         int_scan = new Scanner(System.in);
         string_scan = new Scanner(System.in);
 
@@ -64,6 +78,10 @@ public class GUI {
         all_users.add(temp);
     }
 
+    /**
+     * Main menu function
+     * This function let the user to register new account or sign in for existing one
+     */
     public void MainMenu()
     {
         boolean flag =true;
@@ -94,79 +112,88 @@ public class GUI {
                         if(loged){
                             if(Current_User_type.equalsIgnoreCase("PlaygroundOwner"))
                             {
-                                //Welcome
-                                System.out.println("welcome to playground system");
-                                Playground_Owner owner = new Playground_Owner();
-
-                                //Menu
-                                String tem="1-add playground request \n2-set available hours \n3-view booking \n4-check money";
-                                System.out.println(tem);
-                                int_scan = new Scanner(System.in);
-                                choice = int_scan.nextInt();
-
-                                if (choice >= 1 && choice <=4)
+                                boolean flag1 = true;
+                                while(flag1)
                                 {
-                                    Playground play = new Playground();
-                                    float f;int i;String in;
-                                    switch (choice){
-                                        case 1:
-                                            //add playground request
-                                            string_scan = new Scanner(System.in);
-                                            System.out.println("Enter playground name");
-                                            in = string_scan.nextLine();
-                                            play.setName(in);
-                                            System.out.println("Enter playground location");
-                                            in = string_scan.next();
-                                            play.setLocation(in);
-                                            System.out.println("Enter playground size");
-                                            choice = int_scan.nextInt();
-                                            play.setSize(choice);
+                                    //Welcome
+                                    System.out.println("welcome to playground system");
+                                    Playground_Owner owner = new Playground_Owner();
 
-                                            play.setStatus("Waiting");
-                                            play.setAvailable_hours(0);
-                                            //get owner name from user vector
-                                            for(i=0;i<all_users.size();i++){
-                                                if(all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)){
-                                                    play.setOwner(all_users.elementAt(i).getName());
+                                    //Menu
+                                    String tem="1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Exit";
+                                    System.out.println(tem);
+                                    int_scan = new Scanner(System.in);
+                                    choice = int_scan.nextInt();
+
+                                    if (choice >= 1 && choice <=4)
+                                    {
+                                        Playground play = new Playground();
+                                        float f;int i;String in;
+                                        switch (choice){
+                                            case 1:
+                                                //add playground request
+                                                string_scan = new Scanner(System.in);
+                                                System.out.println("Enter playground name");
+                                                in = string_scan.nextLine();
+                                                play.setName(in);
+                                                System.out.println("Enter playground location");
+                                                in = string_scan.next();
+                                                play.setLocation(in);
+                                                System.out.println("Enter playground size");
+                                                choice = int_scan.nextInt();
+                                                play.setSize(choice);
+
+                                                play.setStatus("Waiting");
+                                                play.setAvailable_hours(0);
+                                                //get owner name from user vector
+                                                for(i=0;i<all_users.size();i++){
+                                                    if(all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)){
+                                                        play.setOwner(all_users.elementAt(i).getName());
+                                                    }
                                                 }
-                                            }
-                                            System.out.println("Enter price per hour");
-                                            float_scan = new Scanner(System.in);
-                                            f = float_scan.nextFloat();
-                                            play.setPrice_per_hour(f);
-                                            System.out.println("Enter cancelation period");
-                                            f = float_scan.nextFloat();
-                                            play.setCancelation_period(f);
+                                                System.out.println("Enter price per hour");
+                                                float_scan = new Scanner(System.in);
+                                                f = float_scan.nextFloat();
+                                                play.setPrice_per_hour(f);
+                                                System.out.println("Enter cancellation period");
+                                                f = float_scan.nextFloat();
+                                                play.setCancelation_period(f);
 
-                                            owner.Add_playground_request(all_playground ,play);
-                                            break;
-                                        case 2:
-                                            //set available hours
-                                            string_scan = new Scanner(System.in);
-                                            int_scan = new Scanner(System.in);
-                                            System.out.println("Enter available hours");
-                                            i = int_scan.nextInt();
-                                            owner.set_available_hours(i,all_playground);
+                                                owner.Add_playground_request(all_playground ,play);
+                                                break;
+                                            case 2:
+                                                //set available hours
+                                                string_scan = new Scanner(System.in);
+                                                int_scan = new Scanner(System.in);
+                                                System.out.println("Enter available hours");
+                                                i = int_scan.nextInt();
+                                                owner.set_available_hours(i,all_playground);
 
-                                            break;
-                                        case 3:
-                                            //view booking
+                                                break;
+                                            case 3:
+                                                //view booking
 
-                                            break;
-                                        case 4:
-                                            //check money
-                                            break;
+                                                break;
+                                            case 4:
+                                                //check money
+                                                String print = owner.Check_money();
+                                                System.out.println(print);
+                                                break;
+                                            case 5:
+                                                flag1 = false;
+                                        }
                                     }
-                                }
-                                else
-                                {
-                                    System.out.println("You Entered Wrong Choice");
-                                }
+                                    else
+                                    {
+                                        System.out.println("You Entered Wrong Choice");
+                                    }
 
+                                    }
+                            }
                             }
                             else if (Current_User_type.equalsIgnoreCase("Admin"))
                             {
-                                Admin my_admin = new Admin;
+                                Admin my_admin = new Admin();
                                 System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
                                 choice = int_scan.nextInt();
                                 if (choice >= 1 && choice <=3)
@@ -186,7 +213,6 @@ public class GUI {
                                 }
 
                             }
-                        }
                         break;
                     case 2:
                         //Register
@@ -195,12 +221,14 @@ public class GUI {
                     case 3:
                         flag=false;
                         break;
+                        }
+
                 }
-            }
             else
             {
                 System.out.println("You Entered Wrong Choice");
             }
+            }
+
         }
     }
-}

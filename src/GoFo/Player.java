@@ -126,9 +126,12 @@ public class Player extends User {
     {
 
     }
-    public void cancel_booking(String playground_name, String date)
+    public void cancel_booking(String playground_name, String date, Vector<Booking_Struct> all_bookings)
     {
-
+        for (int i = 0; i < all_bookings.size(); i++)
+        {
+            if (all_bookings.elementAt(i).getPlayground_name().equalsIgnoreCase(playground_name) && all_bookings.elementAt(i).getDate().equalsIgnoreCase(date));
+        }
     }
     public void show_all_playgrounds(Vector<Playground> All)
     {
