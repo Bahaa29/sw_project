@@ -17,8 +17,9 @@ public class GUI {
         for (int i=0 ; i<all_users.size();i++){
             m=all_users.elementAt(i).getEmail().toString();
             p=all_users.elementAt(i).getPass().toString();
-            System.out.println(m + "\n" + p);
-            if(m == email){
+
+            if(m.equalsIgnoreCase(email) && p.equalsIgnoreCase(Password))
+            {
                 Current_User_type = all_users.elementAt(i).getType();
                 return true;
             }
@@ -92,11 +93,11 @@ public class GUI {
 
                         //After Sign In
                         if(loged){
-                            if(Current_User_type=="PlaygroundOwner")
+                            if(Current_User_type.equalsIgnoreCase("PlaygroundOwner"))
                             {
                                 //Welcome
                                 System.out.println("welcome to playground system");
-                                Playground_Owner owner = null;
+                                Playground_Owner owner = new Playground_Owner();
 
                                 //Menu
                                 String tem="1-add playground request \n2-set available hours \n3-view booking \n4-check money";
@@ -130,8 +131,10 @@ public class GUI {
                                             System.out.println("Enter cancelation period");
                                             f = float_scan.nextFloat();
                                             play.setCancelation_period(f);
+
                                             owner.Add_playground_request(all_playground ,play);
                                             //all_playground.addElement(play);
+                                            System.out.println(all_playground.elementAt(0).getName());
                                             break;
                                         case 2:
                                             //set available hours
@@ -140,6 +143,7 @@ public class GUI {
                                             System.out.println("Enter available hours");
                                             i = int_scan.nextInt();
                                             owner.set_available_hours(i,all_playground);
+
                                             break;
                                         case 3:
                                             //view booking
@@ -161,9 +165,6 @@ public class GUI {
                     case 2:
                         //Register
                         Register();
-                        for (int i=0;i<all_users.size();i++){
-                            System.out.println("Name: " + all_users.elementAt(i).getName() + "\n");
-                        }
                         break;
                     case 3:
                         flag=false;
