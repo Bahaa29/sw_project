@@ -1,7 +1,5 @@
 package GoFo;
 
-import java.util.Vector;
-
 public class Player extends User {
 
     public void book_playground(String playground_name, int hours, String date)
