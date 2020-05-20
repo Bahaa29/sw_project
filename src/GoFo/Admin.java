@@ -27,10 +27,23 @@ public class Admin extends User
         ALL.elementAt(choice-1).setStatus("approved");
         System.out.println("This playground approved successfully");
     }
-
+    /**
+     * Suspend playground function
+     * This function let the admin to suspend specific playground for some reason
+     * @param ALL This Vector Store All Playgrounds In the System
+     */
     public void suspend_playground(Vector<Playground> ALL)
     {
+        for (int i = 0; i < ALL.size(); i++)
+        {
+            if (ALL.elementAt(i).getStatus().equalsIgnoreCase("approved"))
+                System.out.println((i+1) + " - playground name:  " + ALL.elementAt(i).getName() + " - owner: " + ALL.elementAt(i).getOwner());
 
+        }
+        System.out.println("Enter number of playground you want to suspend: ");
+        choice = scan.nextInt();
+        ALL.elementAt(choice-1).setStatus("suspended");
+        System.out.println("This playground suspended successfully");
     }
     public void delete_playground(Vector<Playground> ALL)
     {
