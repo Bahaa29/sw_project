@@ -31,6 +31,13 @@ public class Playground_Owner extends User{
         }
         System.out.println("Available Hours Changed Successfully\n");
     }
+
+    /**
+     * View booking
+     * This function print all bookings that owner's playgrounds had
+     * @param All vector that contain all information about bookings
+     * @return
+     */
     String view_booking(Vector <Booking_Struct> All){
         for (int i = 0; i<All.size(); i++)
         {
