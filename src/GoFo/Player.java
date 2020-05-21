@@ -67,32 +67,15 @@ public class Player extends User {
      * @param All vector of playground
      * @return the playground name
      */
-    public String display_nearest_playground(String ur_location,Vector<Playground> All)
+    public void display_nearest_playground(String ur_location,Vector<Playground> All)
     {
         for(int i=0;i<All.size();i++)
         {
             if(All.elementAt(i).getLocation().equalsIgnoreCase(ur_location))
-                return  All.elementAt(i).getName();
+                System.out.println( All.elementAt(i).getName());
         }
-        return null;
-
     }
 
-    /**
-     * function to show the playground by location
-     * @param location the location of playgroun
-     * @param All vector of all playground
-     * @return the names of playground
-     */
-    public String display_playground(String location,Vector<Playground> All)
-    {
-        for(int i=0;i<All.size();i++)
-        {
-            if(All.elementAt(i).getLocation().equalsIgnoreCase(location))
-                return  All.elementAt(i).getName();
-        }
-        return null;
-    }
 
     /**
      * this function for find all playgrounds that have available hours for the player
@@ -100,14 +83,13 @@ public class Player extends User {
      * @param All vector of playground
      * @return name of playground
      */
-    public String display_nearest_playground(int hours,Vector<Playground> All)
+    public void display_nearest_playground(int hours,Vector<Playground> All)
     {
         for(int i=0;i<All.size();i++)
         {
             if(All.elementAt(i).getAvailable_hours()>=hours)
-                return  All.elementAt(i).getName();
+                System.out.println( All.elementAt(i).getName());
         }
-        return null;
     }
 
     /**

@@ -95,7 +95,8 @@ public class GUI {
             int_scan = new Scanner(System.in);
             string_scan = new Scanner(System.in);
             choice = int_scan.nextInt();
-            if (choice >= 1 && choice <=2) {
+            if (choice >= 1 && choice <=2)
+            {
                 switch (choice) {
                     case 1:
                         //Sign In
@@ -111,7 +112,8 @@ public class GUI {
                         boolean loged = SignIn(mail, pass);
 
                         //After Sign In
-                        if (loged) {
+                        if (loged)
+                        {
                             if (Current_User_type.equalsIgnoreCase("PlaygroundOwner")) {
                                 boolean flag1 = true;
                                 while (flag1) {
@@ -200,9 +202,13 @@ public class GUI {
                                     }
 
                                 }
-                            } else if (Current_User_type.equalsIgnoreCase("Admin")) {
+                            }
+                            else if (Current_User_type.equalsIgnoreCase("Admin"))
+                            {
+                                boolean flag3 = true;
                                 Admin my_admin = new Admin();
-                                for (int i = 0; i < all_users.size(); i++) {
+                                for (int i = 0; i < all_users.size(); i++)
+                                {
                                     if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
                                         my_admin.set_name(all_users.elementAt(i).getName());
                                         my_admin.set_id(all_users.elementAt(i).getId());
@@ -214,25 +220,97 @@ public class GUI {
                                         my_admin.set_type(all_users.elementAt(i).getType());
                                     }
                                 }
-                                System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
-                                choice = int_scan.nextInt();
-                                if (choice >= 1 && choice <= 3) {
-                                    switch (choice) {
-                                        case 1:
-                                            my_admin.Approve_playground(all_playground);
-                                            break;
-                                        case 2:
-                                            my_admin.suspend_playground(all_playground);
-                                            break;
-                                        case 3:
-                                            my_admin.delete_playground(all_playground);
-                                            break;
-
-
+                                while (flag3)
+                                {
+                                    System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
+                                    choice = int_scan.nextInt();
+                                    if (choice >= 1 && choice <= 3) {
+                                        switch (choice) {
+                                            case 1:
+                                                my_admin.Approve_playground(all_playground);
+                                                break;
+                                            case 2:
+                                                my_admin.suspend_playground(all_playground);
+                                                break;
+                                            case 3:
+                                                my_admin.delete_playground(all_playground);
+                                                break;
+                                            case 4:
+                                                flag3=false;
+                                        }
                                     }
                                 }
 
-                            } else if (Current_User_type.equalsIgnoreCase("Player")) {
+                            }
+                            else if (Current_User_type.equalsIgnoreCase("Player"))
+                            {
+                                boolean flag2 = true;
+                                Player my_player=new Player();
+                                for (int i = 0; i < all_users.size(); i++)
+                                {
+                                    if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
+                                        my_player.set_name(all_users.elementAt(i).getName());
+                                        my_player.set_id(all_users.elementAt(i).getId());
+                                        my_player.set_email(all_users.elementAt(i).getEmail());
+                                        my_player.set_pass(all_users.elementAt(i).getPass());
+                                        my_player.set_phone(all_users.elementAt(i).getPhone());
+                                        my_player.set_loc(all_users.elementAt(i).getD_loc());
+                                        my_player.wallet.setBalance(all_users.elementAt(i).wallet.getBalance());
+                                        my_player.set_type(all_users.elementAt(i).getType());
+                                        }
+                                }
+                                while (flag2)
+                                {
+                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- check_available_timeslot\n6- pay\n7- send_invitation");
+                                    choice = int_scan.nextInt();
+                                    if (choice >= 1 && choice <= 7)
+                                    {
+                                        switch (choice) {
+                                            case 1:
+                                                my_player.book_playground(all_bookings, all_playground, all_users);
+                                                break;
+                                            case 2:
+                                                System.out.println("enter the hours");
+                                                int hours = int_scan.nextInt();
+                                                my_player.display_nearest_playground(hours, all_playground);
+                                                break;
+                                            case 3:
+                                                System.out.println("enter the location");
+                                                String loc = string_scan.nextLine();
+                                                my_player.display_nearest_playground(loc, all_playground);
+                                                break;
+                                            case 4:
+                                                my_player.show_all_playgrounds(all_playground);
+                                                break;
+                                            case 5:
+                                                System.out.println("enter the date");
+                                                String date = string_scan.nextLine();
+                                                System.out.println("enter the name of playground owner");
+                                                String playground_owner_name = string_scan.nextLine();
+                                                System.out.println("enter playground name");
+                                                String playground_name = string_scan.nextLine();
+                                                int hour = int_scan.nextInt();
+                                                my_player.check_available_timeslot(date, all_bookings, all_playground, playground_owner_name, playground_name, hour);
+                                                break;
+                                            case 6:
+                                                System.out.println("enter the amount");
+                                                float amount = float_scan.nextFloat();
+                                                System.out.println("enter the name of playground owner");
+                                                String player_name = string_scan.nextLine();
+                                                System.out.println("enter the name of owner");
+                                                String owner = string_scan.nextLine();
+                                                my_player.pay(amount, all_users, player_name, owner);
+                                                break;
+                                            case 7:
+                                                System.out.println("enter the player email");
+                                                String email = string_scan.nextLine();
+                                                my_player.send_invitation(email, all_users);
+                                            case 8:
+                                                flag2=false;
+                                                break;
+                                        }
+                                    }
+                                }
 
                             }
                         }
