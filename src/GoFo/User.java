@@ -1,11 +1,13 @@
 package GoFo;
 
+import java.util.Vector;
+
 public class User
 {
     private int id ;
     private String name,pass,email,phone,d_loc,type;
     public eWallet wallet;
-
+    Vector<String> v=new Vector();
     public void set_id(int ID)
     {
         id =ID;
@@ -61,5 +63,18 @@ public class User
 
     public String getType() {
         return type;
+    }
+
+    public void setInbox(String inbox)
+    {
+        v.add(inbox);
+    }
+    public void getInbox()
+    {
+        for(int i=0;i<v.size();i++)
+        {
+            System.out.println(v.elementAt(i)+"-");
+        }
+
     }
 }

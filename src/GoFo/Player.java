@@ -196,9 +196,19 @@ public class Player extends User {
         }
         return flag;
     }
-    public void send_invitation(String player_email)
+    public void send_invitation(String player_email,Vector<User>all_user)
     {
-
+        Scanner scan=new Scanner(System.in);
+        for(int i=0;i<all_user.size();i++)
+        {
+            if(all_user.elementAt(i).getEmail().equalsIgnoreCase(player_email))
+            {
+                System.out.println("enter the mail u want send to player");
+                String mail=scan.nextLine();
+                all_user.elementAt(i).setInbox(mail);
+                System.out.println("mail send to: "+player_email);
+            }
+        }
     }
 
 
