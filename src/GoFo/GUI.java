@@ -87,19 +87,19 @@ public class GUI {
     public void MainMenu()
     {
         boolean flag =true;
-        while(flag){
+        while(flag)
+        {
             String msg = "Welcome To GoFo App\n1-Sign In\n2-Register\n3-Exit\nYour Choice: ";
             System.out.println(msg);
             int choice;
             int_scan = new Scanner(System.in);
             string_scan = new Scanner(System.in);
             choice = int_scan.nextInt();
-            if (choice >= 1 && choice <=2)
-            {
-                switch (choice){
+            if (choice >= 1 && choice <=2) {
+                switch (choice) {
                     case 1:
                         //Sign In
-                        String mail , pass;
+                        String mail, pass;
 
                         //Take Email And Pass
                         System.out.println("Enter Email : ");
@@ -108,24 +108,18 @@ public class GUI {
                         pass = string_scan.nextLine();
 
                         //Send Them To Sign In
-                        boolean loged = SignIn(mail,pass);
+                        boolean loged = SignIn(mail, pass);
 
                         //After Sign In
-                        if(loged)
-                        {
-
-                            if(Current_User_type.equalsIgnoreCase("PlaygroundOwner"))
-                            {
+                        if (loged) {
+                            if (Current_User_type.equalsIgnoreCase("PlaygroundOwner")) {
                                 boolean flag1 = true;
-                                while(flag1)
-                                {
+                                while (flag1) {
                                     //Welcome
                                     System.out.println("welcome to playground system");
                                     Playground_Owner owner = new Playground_Owner();
-                                    for (int i =0; i< all_users.size(); i++)
-                                    {
-                                        if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name))
-                                        {
+                                    for (int i = 0; i < all_users.size(); i++) {
+                                        if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
                                             owner.set_name(all_users.elementAt(i).getName());
                                             owner.set_id(all_users.elementAt(i).getId());
                                             owner.set_email(all_users.elementAt(i).getEmail());
@@ -137,16 +131,17 @@ public class GUI {
                                         }
                                     }
                                     //Menu
-                                    String tem="1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Exit";
+                                    String tem = "1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Exit";
                                     System.out.println(tem);
                                     int_scan = new Scanner(System.in);
                                     choice = int_scan.nextInt();
 
-                                    if (choice >= 1 && choice <=4)
-                                    {
+                                    if (choice >= 1 && choice <= 4) {
                                         Playground play = new Playground();
-                                        float f;int i;String in;
-                                        switch (choice){
+                                        float f;
+                                        int i;
+                                        String in;
+                                        switch (choice) {
                                             case 1:
                                                 //add playground request
                                                 string_scan = new Scanner(System.in);
@@ -163,8 +158,8 @@ public class GUI {
                                                 play.setStatus("Waiting");
                                                 play.setAvailable_hours(0);
                                                 //get owner name from user vector
-                                                for(i=0;i<all_users.size();i++){
-                                                    if(all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)){
+                                                for (i = 0; i < all_users.size(); i++) {
+                                                    if (all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)) {
                                                         play.setOwner(all_users.elementAt(i).getName());
                                                     }
                                                 }
@@ -176,7 +171,7 @@ public class GUI {
                                                 f = float_scan.nextFloat();
                                                 play.setCancelation_period(f);
 
-                                                owner.Add_playground_request(all_playground ,play);
+                                                owner.Add_playground_request(all_playground, play);
                                                 break;
                                             case 2:
                                                 //set available hours
@@ -184,7 +179,7 @@ public class GUI {
                                                 int_scan = new Scanner(System.in);
                                                 System.out.println("Enter available hours");
                                                 i = int_scan.nextInt();
-                                                owner.set_available_hours(i,all_playground);
+                                                owner.set_available_hours(i, all_playground);
 
                                                 break;
                                             case 3:
@@ -200,23 +195,15 @@ public class GUI {
                                                 flag1 = false;
                                                 break;
                                         }
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         System.out.println("You Entered Wrong Choice");
                                     }
 
-                                    }
-                            }
-
-                            else if (Current_User_type.equalsIgnoreCase("Admin"))
-                            {
-
+                                }
+                            } else if (Current_User_type.equalsIgnoreCase("Admin")) {
                                 Admin my_admin = new Admin();
-                                for (int i =0; i< all_users.size(); i++)
-                                {
-                                    if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name))
-                                    {
+                                for (int i = 0; i < all_users.size(); i++) {
+                                    if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
                                         my_admin.set_name(all_users.elementAt(i).getName());
                                         my_admin.set_id(all_users.elementAt(i).getId());
                                         my_admin.set_email(all_users.elementAt(i).getEmail());
@@ -229,10 +216,8 @@ public class GUI {
                                 }
                                 System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
                                 choice = int_scan.nextInt();
-                                if (choice >= 1 && choice <=3)
-                                {
-                                    switch(choice)
-                                    {
+                                if (choice >= 1 && choice <= 3) {
+                                    switch (choice) {
                                         case 1:
                                             my_admin.Approve_playground(all_playground);
                                             break;
@@ -247,15 +232,9 @@ public class GUI {
                                     }
                                 }
 
+                            } else if (Current_User_type.equalsIgnoreCase("Player")) {
+
                             }
-<<<<<<< HEAD
-
-                            
-=======
-                        else if (Current_User_type.equalsIgnoreCase("Player"))
-                        {
->>>>>>> 86454c88c7f96f72e019c2c925a7a7eaaeea3a36
-
                         }
                         break;
                     case 2:
@@ -263,15 +242,16 @@ public class GUI {
                         Register();
                         break;
                     case 3:
-                        flag=false;
+                        flag = false;
                         break;
-                        }
+
 
                 }
-            else
-            {
-                System.out.println("You Entered Wrong Choice");
             }
+               else
+               {
+                    System.out.println("You Entered Wrong Choice");
+               }
             }
 
         }
