@@ -7,6 +7,7 @@ public class GUI {
     private Vector<Playground> all_playground = new Vector<Playground>();
     public Vector<Booking_Struct> all_bookings = new Vector<Booking_Struct>();
     private String Current_User_type; //The Type of User has login now
+    private String Current_User_name;
     private Scanner int_scan ;
     private Scanner string_scan;
     private Scanner float_scan;
@@ -28,6 +29,7 @@ public class GUI {
             if(m.equalsIgnoreCase(email) && p.equalsIgnoreCase(Password))
             {
                 Current_User_type = all_users.elementAt(i).getType();
+                Current_User_name = all_users.elementAt(i).getName();
                 return true;
             }
         }
@@ -109,7 +111,9 @@ public class GUI {
                         boolean loged = SignIn(mail,pass);
 
                         //After Sign In
-                        if(loged){
+                        if(loged)
+                        {
+
                             if(Current_User_type.equalsIgnoreCase("PlaygroundOwner"))
                             {
                                 boolean flag1 = true;
@@ -118,7 +122,20 @@ public class GUI {
                                     //Welcome
                                     System.out.println("welcome to playground system");
                                     Playground_Owner owner = new Playground_Owner();
-
+                                    for (int i =0; i< all_users.size(); i++)
+                                    {
+                                        if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name))
+                                        {
+                                            owner.set_name(all_users.elementAt(i).getName());
+                                            owner.set_id(all_users.elementAt(i).getId());
+                                            owner.set_email(all_users.elementAt(i).getEmail());
+                                            owner.set_pass(all_users.elementAt(i).getPass());
+                                            owner.set_phone(all_users.elementAt(i).getPhone());
+                                            owner.set_loc(all_users.elementAt(i).getD_loc());
+                                            owner.wallet.setBalance(all_users.elementAt(i).wallet.getBalance());
+                                            owner.set_type(all_users.elementAt(i).getType());
+                                        }
+                                    }
                                     //Menu
                                     String tem="1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Exit";
                                     System.out.println(tem);
@@ -172,7 +189,7 @@ public class GUI {
                                                 break;
                                             case 3:
                                                 //view booking
-
+                                                owner.view_booking(all_bookings);
                                                 break;
                                             case 4:
                                                 //check money
@@ -181,6 +198,7 @@ public class GUI {
                                                 break;
                                             case 5:
                                                 flag1 = false;
+                                                break;
                                         }
                                     }
                                     else
@@ -190,10 +208,25 @@ public class GUI {
 
                                     }
                             }
-                            }
+
                             else if (Current_User_type.equalsIgnoreCase("Admin"))
                             {
+
                                 Admin my_admin = new Admin();
+                                for (int i =0; i< all_users.size(); i++)
+                                {
+                                    if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name))
+                                    {
+                                        my_admin.set_name(all_users.elementAt(i).getName());
+                                        my_admin.set_id(all_users.elementAt(i).getId());
+                                        my_admin.set_email(all_users.elementAt(i).getEmail());
+                                        my_admin.set_pass(all_users.elementAt(i).getPass());
+                                        my_admin.set_phone(all_users.elementAt(i).getPhone());
+                                        my_admin.set_loc(all_users.elementAt(i).getD_loc());
+                                        my_admin.wallet.setBalance(all_users.elementAt(i).wallet.getBalance());
+                                        my_admin.set_type(all_users.elementAt(i).getType());
+                                    }
+                                }
                                 System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
                                 choice = int_scan.nextInt();
                                 if (choice >= 1 && choice <=3)
@@ -209,10 +242,16 @@ public class GUI {
                                         case 3:
                                             my_admin.delete_playground(all_playground);
                                             break;
+
+
                                     }
                                 }
 
                             }
+
+                            
+
+                        }
                         break;
                     case 2:
                         //Register

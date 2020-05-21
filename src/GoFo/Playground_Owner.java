@@ -31,7 +31,16 @@ public class Playground_Owner extends User{
         }
         System.out.println("Available Hours Changed Successfully\n");
     }
-    String view_booking(){
+    String view_booking(Vector <Booking_Struct> All){
+        for (int i = 0; i<All.size(); i++)
+        {
+            if (All.elementAt(i).getPlayground_owner().equalsIgnoreCase(this.getName()))
+            {
+                System.out.println((i+1) + "- Player name: " + All.elementAt(i).getPlayer_name() +
+                        " & Playground name: " + All.elementAt(i).getPlayground_name() + " & " + All.elementAt(i).getHours() +
+                        " hour(s) & total: " + All.elementAt(i).getTotal() + " & Date: " + All.elementAt(i).getDate());
+            }
+        }
         return null;
     }
 
