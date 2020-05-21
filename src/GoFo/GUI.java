@@ -248,8 +248,13 @@ public class GUI {
                                 }
 
                             }
+<<<<<<< HEAD
 
                             
+=======
+                        else if (Current_User_type.equalsIgnoreCase("Player"))
+                        {
+>>>>>>> 86454c88c7f96f72e019c2c925a7a7eaaeea3a36
 
                         }
                         break;
