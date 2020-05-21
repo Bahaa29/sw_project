@@ -95,7 +95,7 @@ public class GUI {
             int_scan = new Scanner(System.in);
             string_scan = new Scanner(System.in);
             choice = int_scan.nextInt();
-            if (choice >= 1 && choice <=2)
+            if (choice >= 1 && choice <=3)
             {
                 switch (choice) {
                     case 1:
@@ -153,14 +153,17 @@ public class GUI {
                                                 in = string_scan.nextLine();
                                                 play.setName(in);
                                                 System.out.println("Enter playground location");
-                                                in = string_scan.next();
+                                                in = string_scan.nextLine();
                                                 play.setLocation(in);
                                                 System.out.println("Enter playground size");
                                                 choice = int_scan.nextInt();
                                                 play.setSize(choice);
 
                                                 play.setStatus("Waiting");
-                                                play.setAvailable_hours(0);
+                                                System.out.println("Enter playground Available Hours");
+                                                choice = int_scan.nextInt();
+                                                play.setAvailable_hours(choice);
+
                                                 //get owner name from user vector
                                                 for (i = 0; i < all_users.size(); i++) {
                                                     if (all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)) {
@@ -264,7 +267,7 @@ public class GUI {
                                 }
                                 while (flag2)
                                 {
-                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- check_available_timeslot\n6- pay\n7- send_invitation\n8-Back");
+                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- send_invitation\n6-Back");
                                     System.out.println("Your Choice: ");
                                     choice = int_scan.nextInt();
                                     if (choice >= 1 && choice <= 8)
@@ -285,29 +288,10 @@ public class GUI {
                                                 my_player.show_all_playgrounds(all_playground);
                                                 break;
                                             case 5:
-                                                System.out.println("enter the date");
-                                                String date = string_scan.nextLine();
-                                                System.out.println("enter the name of playground owner");
-                                                String playground_owner_name = string_scan.nextLine();
-                                                System.out.println("enter playground name");
-                                                String playground_name = string_scan.nextLine();
-                                                int hour = int_scan.nextInt();
-                                                my_player.check_available_timeslot(date, all_bookings, all_playground, playground_owner_name, playground_name, hour);
-                                                break;
-                                            case 6:
-                                                System.out.println("enter the amount");
-                                                float amount = float_scan.nextFloat();
-                                                System.out.println("enter the name of playground owner");
-                                                String player_name = string_scan.nextLine();
-                                                System.out.println("enter the name of owner");
-                                                String owner = string_scan.nextLine();
-                                                my_player.pay(amount, all_users, player_name, owner);
-                                                break;
-                                            case 7:
                                                 System.out.println("enter the player email");
                                                 String email = string_scan.nextLine();
                                                 my_player.send_invitation(email, all_users);
-                                            case 8:
+                                            case 6:
                                                 flag2=false;
                                                 break;
                                         }

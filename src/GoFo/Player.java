@@ -113,7 +113,10 @@ public class Player extends User {
     {
         for(int i=0;i<All.size();i++)
         {
-            System.out.println(All.elementAt(i).getName());
+            if (All.elementAt(i).getStatus().equalsIgnoreCase("Approved")){
+                System.out.println(All.elementAt(i).getName());
+            }
+
         }
     }
 
@@ -127,7 +130,7 @@ public class Player extends User {
      * @param hours the number of hours that i want check with
      * @return true(there are) false(no)
      */
-    public boolean check_available_timeslot(String Date,Vector<Booking_Struct> ADD,Vector<Playground> All,String playground_owner, String playground_name,int hours)
+    private boolean check_available_timeslot(String Date,Vector<Booking_Struct> ADD,Vector<Playground> All,String playground_owner, String playground_name,int hours)
     {
         int counter=0;
         for(int i=0;i< ADD.size();i++)
@@ -163,7 +166,7 @@ public class Player extends User {
      * @param owner_Name the playground owner name
      * @return true=have enough many, false=didn not have
      */
-    public boolean pay(float amount,Vector<User> all_users,String player_name,String owner_Name)
+    private boolean pay(float amount,Vector<User> all_users,String player_name,String owner_Name)
     {
         float price=0;
         boolean flag=false;
