@@ -116,9 +116,8 @@ public class GUI {
                         {
                             if (Current_User_type.equalsIgnoreCase("PlaygroundOwner")) {
                                 boolean flag1 = true;
-                                while (flag1) {
+
                                     //Welcome
-                                    System.out.println("welcome to playground system");
                                     Playground_Owner owner = new Playground_Owner();
                                     for (int i = 0; i < all_users.size(); i++) {
                                         if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
@@ -133,12 +132,15 @@ public class GUI {
                                         }
                                     }
                                     //Menu
-                                    String tem = "1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Exit";
+                                while (flag1) {
+                                    System.out.println("welcome to playground system");
+                                String tem = "1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Back";
                                     System.out.println(tem);
                                     int_scan = new Scanner(System.in);
+                                    System.out.println("Your Choice: ");
                                     choice = int_scan.nextInt();
 
-                                    if (choice >= 1 && choice <= 4) {
+                                    if (choice >= 1 && choice <= 5) {
                                         Playground play = new Playground();
                                         float f;
                                         int i;
@@ -222,9 +224,10 @@ public class GUI {
                                 }
                                 while (flag3)
                                 {
-                                    System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n");
+                                    System.out.println("Welcome to Admin system\n1- Approve playground\n2- Suspend playground\n3- Delete playground\n4-Back");
+                                    System.out.println("Your Choice: ");
                                     choice = int_scan.nextInt();
-                                    if (choice >= 1 && choice <= 3) {
+                                    if (choice >= 1 && choice <= 4) {
                                         switch (choice) {
                                             case 1:
                                                 my_admin.Approve_playground(all_playground);
@@ -261,9 +264,10 @@ public class GUI {
                                 }
                                 while (flag2)
                                 {
-                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- check_available_timeslot\n6- pay\n7- send_invitation");
+                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- check_available_timeslot\n6- pay\n7- send_invitation\n8-Back");
+                                    System.out.println("Your Choice: ");
                                     choice = int_scan.nextInt();
-                                    if (choice >= 1 && choice <= 7)
+                                    if (choice >= 1 && choice <= 8)
                                     {
                                         switch (choice) {
                                             case 1:
@@ -275,9 +279,7 @@ public class GUI {
                                                 my_player.display_nearest_playground(hours, all_playground);
                                                 break;
                                             case 3:
-                                                System.out.println("enter the location");
-                                                String loc = string_scan.nextLine();
-                                                my_player.display_nearest_playground(loc, all_playground);
+                                                my_player.display_nearest_playground(all_playground);
                                                 break;
                                             case 4:
                                                 my_player.show_all_playgrounds(all_playground);
@@ -311,7 +313,6 @@ public class GUI {
                                         }
                                     }
                                 }
-
                             }
                         }
                         break;

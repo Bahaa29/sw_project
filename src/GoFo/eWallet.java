@@ -1,7 +1,7 @@
 package GoFo;
 
 public class eWallet {
-    private float balance;
+    private float balance=0;
     public float getBalance() {
         return balance;
     }

@@ -15,20 +15,29 @@ public class Player extends User {
         Booking_Struct obj=new Booking_Struct();
         Scanner scan=new Scanner(System.in);
         Scanner int_scan=new Scanner(System.in);
-        System.out.println("enter the playground name");
-        String playground_name = scan.nextLine();
+
+        for (int i=0;i<All.size();i++){
+            System.out.println((i+1) + "-" + All.elementAt(i).getName() + " & Location: " + All.elementAt(i).getLocation());
+        }
+        System.out.println("Enter The ID of Playground : ");
+        int play_id = int_scan.nextInt();
+
+        String playground_name = All.elementAt(play_id - 1).getName();
         obj.setPlayer_name(playground_name);
         System.out.println("enter the number of hours u want to book");
         int hour_book = int_scan.nextInt();
         obj.setHours(hour_book);
-        System.out.println("enter the data");
+        System.out.println("enter the date");
         String date =scan.nextLine();
         obj.setDate(date);
-        System.out.println("enter your name");
-        String name =scan.nextLine();
-        obj.setPlayer_name(name);
-        System.out.println("enter the playground_owner_name");
-        String playground_owner_name =scan.nextLine();
+        obj.setPlayer_name(this.getName());
+
+        String playground_owner_name ="";
+        for (int i=0;i<All.size();i++){
+            if(All.elementAt(i).getName().equalsIgnoreCase(playground_name)){
+                playground_owner_name = All.elementAt(i).getOwner();
+            }
+        }
         obj.setPlayground_owner(playground_owner_name);
         float total=0;
         for (int i=0;i<All.size();i++)
@@ -44,7 +53,7 @@ public class Player extends User {
         {
             if(ADD.size()==0)
             {
-                pay(total,all_users,name,playground_owner_name);
+                pay(total,all_users,this.getName(),playground_owner_name);
                 ADD.add(obj);
             }
             else
@@ -52,7 +61,7 @@ public class Player extends User {
                 boolean flag=check_available_timeslot(date,ADD,All,playground_owner_name,playground_name,hour_book);
                 if(flag)
                 {
-                    pay(total,all_users,name,playground_owner_name);
+                    pay(total,all_users,this.getName(),playground_owner_name);
                     ADD.add(obj);
                 }
                 else
@@ -63,15 +72,14 @@ public class Player extends User {
 
     /**
      * function to find all playground nearest player
-     * @param ur_location the location of player
      * @param All vector of playground
      * @return the playground name
      */
-    public void display_nearest_playground(String ur_location,Vector<Playground> All)
+    public void display_nearest_playground(Vector<Playground> All)
     {
         for(int i=0;i<All.size();i++)
         {
-            if(All.elementAt(i).getLocation().equalsIgnoreCase(ur_location))
+            if(All.elementAt(i).getLocation().equalsIgnoreCase(this.getD_loc()))
                 System.out.println( All.elementAt(i).getName());
         }
     }
@@ -87,9 +95,14 @@ public class Player extends User {
     {
         for(int i=0;i<All.size();i++)
         {
-            if(All.elementAt(i).getAvailable_hours()>=hours)
+            if(All.elementAt(i).getAvailable_hours()>=hours && All.elementAt(i).getLocation().equalsIgnoreCase(this.getD_loc()))
+            {
                 System.out.println( All.elementAt(i).getName());
+                return;
+            }
+
         }
+        System.out.println("Not Found");
     }
 
     /**
@@ -100,7 +113,7 @@ public class Player extends User {
     {
         for(int i=0;i<All.size();i++)
         {
-            System.out.println(All.elementAt(i).getName()+"-");
+            System.out.println(All.elementAt(i).getName());
         }
     }
 
