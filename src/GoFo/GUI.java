@@ -36,7 +36,6 @@ public class GUI {
         }
         return false;
     }
-
     /**
      * Register function
      * This function take user's information who enter the app for first time
@@ -80,7 +79,6 @@ public class GUI {
         temp.wallet.setBalance(0);
         all_users.add(temp);
     }
-
     /**
      * Main menu function
      * This function let the user to register new account or sign in for existing one
@@ -175,9 +173,6 @@ public class GUI {
                                                 float_scan = new Scanner(System.in);
                                                 f = float_scan.nextFloat();
                                                 play.setPrice_per_hour(f);
-                                                System.out.println("Enter cancellation period");
-                                                f = float_scan.nextFloat();
-                                                play.setCancelation_period(f);
 
                                                 owner.Add_playground_request(all_playground, play);
                                                 break;

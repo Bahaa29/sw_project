@@ -14,7 +14,6 @@ public class Booking_Struct
     public String getPlayer_name() {
         return player_name;
     }
-
     /**
      * setPlayer_name function
      * this function set the value of the player name
@@ -23,7 +22,6 @@ public class Booking_Struct
     public void setPlayer_name(String player_name) {
         this.player_name = player_name;
     }
-
     /**
      * getPlayground_name function
      * @return the name of the playground
@@ -31,7 +29,6 @@ public class Booking_Struct
     public String getPlayground_name() {
         return playground_name;
     }
-
     /**
      * setPlayground_name
      * his function set the value of the playground name
@@ -40,7 +37,6 @@ public class Booking_Struct
     public void setPlayground_name(String playground_name) {
         this.playground_name = playground_name;
     }
-
     /**
      * getPlayground_owner function
      * @return the value of playground owner name
@@ -48,7 +44,6 @@ public class Booking_Struct
     public String getPlayground_owner() {
         return playground_owner;
     }
-
     /**
      * setPlayground_owner function
      * this function set the value of the playground_owner attribute
@@ -57,7 +52,6 @@ public class Booking_Struct
     public void setPlayground_owner(String playground_owner) {
         this.playground_owner = playground_owner;
     }
-
     /**
      * getHours function
      * @return the value of hours attribute

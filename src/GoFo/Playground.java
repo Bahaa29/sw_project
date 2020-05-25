@@ -3,7 +3,7 @@ package GoFo;
 public class Playground{
     private String name,location,status,owner;
     private int size, available_hours;
-    private float price_per_hour,cancelation_period;
+    private float price_per_hour;
 
     public String getName() {
         return name;
@@ -61,11 +61,4 @@ public class Playground{
         this.price_per_hour = price_per_hour;
     }
 
-    public float getCancelation_period() {
-        return cancelation_period;
-    }
-
-    public void setCancelation_period(float cancelation_period) {
-        this.cancelation_period = cancelation_period;
-    }
 }
