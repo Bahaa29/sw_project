@@ -5,7 +5,8 @@ import java.util.Vector;
 public class GUI {
     private Vector<User> all_users = new Vector<User>();
     private Vector<Playground> all_playground = new Vector<Playground>();
-    public Vector<Booking_Struct> all_bookings = new Vector<Booking_Struct>();
+    private Vector<Booking_Struct> all_bookings = new Vector<Booking_Struct>();
+    private Vector<String> all_invitations=new Vector<String>();
     private String Current_User_type; //The Type of User has login now
     private String Current_User_name;
     private Scanner int_scan ;
@@ -17,7 +18,7 @@ public class GUI {
      * This function to check the validation of users' and sign them in
      * @param email the email of the user that trying to sign in
      * @param Password the password of the user trying to sign in
-     * @return
+     * @return true or false the status of the login operation
      */
     private boolean SignIn(String email,String Password){
         //Sign In
@@ -265,6 +266,7 @@ public class GUI {
                                         my_player.set_type(all_users.elementAt(i).getType());
                                         }
                                 }
+                                my_player.Show_Inbox(all_invitations);
                                 while (flag2)
                                 {
                                     System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- send_invitation\n6-Back");
@@ -290,7 +292,7 @@ public class GUI {
                                             case 5:
                                                 System.out.println("enter the player email");
                                                 String email = string_scan.nextLine();
-                                                my_player.send_invitation(email, all_users);
+                                                my_player.send_invitation(email, all_users,all_invitations);
                                             case 6:
                                                 flag2=false;
                                                 break;

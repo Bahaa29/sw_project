@@ -69,7 +69,6 @@ public class Player extends User {
             }
         }
     }
-
     /**
      * function to find all playground nearest player
      * @param All vector of playground
@@ -83,8 +82,19 @@ public class Player extends User {
                 System.out.println( All.elementAt(i).getName());
         }
     }
-
-
+    /**
+     * Show Inbox Function
+     * this tell user if anyone send him an invitation
+     * @param all all invitation stored in the system
+     */
+    public void Show_Inbox(Vector<String> all)
+    {
+        for(int i=0;i< all.size();i++){
+            if(all.elementAt(i).equalsIgnoreCase(this.getEmail())){
+                System.out.println("You Have an Invitation");
+            }
+        }
+    }
     /**
      * this function for find all playgrounds that have available hours for the player
      * @param hours the hours that player want
@@ -104,7 +114,6 @@ public class Player extends User {
         }
         System.out.println("Not Found");
     }
-
     /**
      * function to show all playground
      * @param All vector of all play ground
@@ -119,7 +128,6 @@ public class Player extends User {
 
         }
     }
-
     /**
      * check to find to check the available time for specific playground
      * @param Date the date that player want to check available_timeslot
@@ -157,7 +165,6 @@ public class Player extends User {
             return  true;
 
     }
-
     /**
      * function for pay the many to playground owner
      * @param amount the amount for booking this playground
@@ -194,16 +201,20 @@ public class Player extends User {
         }
         return flag;
     }
-    public void send_invitation(String player_email,Vector<User>all_user)
+    /**
+     * Send Invitations
+     * @param player_email email that you will sent to it the invitation
+     * @param all_user vector contain all users data
+     * @param all_invitations vector of all invitations
+     */
+    public void send_invitation(String player_email,Vector<User>all_user ,Vector<String> all_invitations)
     {
         Scanner scan=new Scanner(System.in);
         for(int i=0;i<all_user.size();i++)
         {
             if(all_user.elementAt(i).getEmail().equalsIgnoreCase(player_email))
             {
-                System.out.println("enter the mail u want send to player");
-                String mail=scan.nextLine();
-                all_user.elementAt(i).setInbox(mail);
+                all_invitations.add(player_email);
                 System.out.println("mail send to: "+player_email);
             }
         }

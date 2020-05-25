@@ -27,7 +27,6 @@ public class Admin extends User
         ALL.elementAt(choice-1).setStatus("approved");
         System.out.println("This playground approved successfully");
     }
-
     /**
      * Suspend playground function
      * This function let the admin to suspend specific playground for some reason
@@ -46,7 +45,6 @@ public class Admin extends User
         ALL.elementAt(choice-1).setStatus("suspended");
         System.out.println("This playground suspended successfully");
     }
-
     /**
      * Delete playground function
      * This function let the admin delete a playground completely
