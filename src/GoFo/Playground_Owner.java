@@ -13,7 +13,6 @@ public class Playground_Owner extends User{
     void Add_playground_request(Vector<Playground> ALL ,Playground play){
         ALL.add(play);
     }
-
     /**
      * set available hours function
      * this function change the available hours attribute for a stored playground
@@ -31,7 +30,6 @@ public class Playground_Owner extends User{
         }
         System.out.println("Available Hours Changed Successfully\n");
     }
-
     /**
      * View booking
      * This function print all bookings that owner's playgrounds had
@@ -50,7 +48,6 @@ public class Playground_Owner extends User{
         }
         return null;
     }
-
     /**
      * Check Money Function
      * this function check the balance of playground owner to tell him how much he has
