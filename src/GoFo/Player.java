@@ -3,7 +3,8 @@ package GoFo;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Player extends User {
+public class Player extends User
+{
     /**
      * this function for make player able to book playground
      * @param ADD this a class for booking a make vector for this class to store the booking
@@ -15,44 +16,53 @@ public class Player extends User {
         Booking_Struct obj=new Booking_Struct();
         Scanner scan=new Scanner(System.in);
         Scanner int_scan=new Scanner(System.in);
-
-        for (int i=0;i<All.size();i++){
-            System.out.println((i+1) + "-" + All.elementAt(i).getName() + " & Location: " + All.elementAt(i).getLocation());
+        for (int i=0;i<All.size();i++)
+        {
+            System.out.println((i+1) + "-" + All.elementAt(i).getName() + " & Location: " + All.elementAt(i).getLocation()+ "Available hours: "+All.elementAt(i).getAvailable_hours());
         }
         System.out.println("Enter The ID of Playground : ");
         int play_id = int_scan.nextInt();
-
         String playground_name = All.elementAt(play_id - 1).getName();
-        obj.setPlayer_name(playground_name);
-        System.out.println("enter the number of hours u want to book");
-        int hour_book = int_scan.nextInt();
-        obj.setHours(hour_book);
-        System.out.println("enter the date");
-        String date =scan.nextLine();
-        obj.setDate(date);
-        obj.setPlayer_name(this.getName());
+        if(All.elementAt(play_id-1).getStatus().equalsIgnoreCase("waiting"))
+        {
+            System.out.println("----------------------------------------");
+            System.out.println("the playground cant booking it right now");
+            System.out.println("----------------------------------------");
 
-        String playground_owner_name ="";
-        for (int i=0;i<All.size();i++){
-            if(All.elementAt(i).getName().equalsIgnoreCase(playground_name)){
-                playground_owner_name = All.elementAt(i).getOwner();
-            }
         }
-        obj.setPlayground_owner(playground_owner_name);
-        float total=0;
-        for (int i=0;i<All.size();i++)
+        else
         {
-            if(All.elementAt(i).getName().equalsIgnoreCase(playground_name))
+            obj.setPlayground_name(playground_name);
+            System.out.println("enter the number of hours u want to book");
+            int hour_book = int_scan.nextInt();
+            obj.setHours(hour_book);
+            System.out.println("enter the date");
+            String date =scan.nextLine();
+            obj.setDate(date);
+            obj.setPlayer_name(this.getName());
+
+            String playground_owner_name ="";
+            for (int i=0;i<All.size();i++)
             {
-                total=All.elementAt(i).getPrice_per_hour();
+                if(All.elementAt(i).getName().equalsIgnoreCase(playground_name))
+                {
+                    playground_owner_name = All.elementAt(i).getOwner();
+                }
             }
-        }
-        total*=hour_book;
-        obj.setTotal(total);
-        for(int i=0;i<ADD.size();i++)
-        {
+            obj.setPlayground_owner(playground_owner_name);
+            float total=0;
+            for (int i=0;i<All.size();i++)
+            {
+                if(All.elementAt(i).getName().equalsIgnoreCase(playground_name))
+                {
+                    total=All.elementAt(i).getPrice_per_hour();
+                }
+            }
+            total*=hour_book;
+            obj.setTotal(total);
             if(ADD.size()==0)
             {
+
                 pay(total,all_users,this.getName(),playground_owner_name);
                 ADD.add(obj);
             }
@@ -68,6 +78,7 @@ public class Player extends User {
                     System.out.println("u cant booking in this day for this playground");
             }
         }
+
     }
     /**
      * function to find all playground nearest player
@@ -79,20 +90,19 @@ public class Player extends User {
         for(int i=0;i<All.size();i++)
         {
             if(All.elementAt(i).getLocation().equalsIgnoreCase(this.getD_loc()))
-                System.out.println( All.elementAt(i).getName());
+                System.out.println( "name: "+ All.elementAt(i).getName()+ " location: "+All.elementAt(i).getLocation()+" price per hour: "+All.elementAt(i).getPrice_per_hour());
         }
     }
     /**
      * Show Inbox Function
      * this tell user if anyone send him an invitation
-     * @param all all invitation stored in the system
      */
-    public void Show_Inbox(Vector<String> all)
+    public void Show_Inbox(Vector<String>all_invitations)
     {
-        for(int i=0;i< all.size();i++){
-            if(all.elementAt(i).equalsIgnoreCase(this.getEmail())){
-                System.out.println("You Have an Invitation");
-            }
+        for(int i=0;i< all_invitations.size();i++)
+        {
+            System.out.println(all_invitations);
+
         }
     }
     /**
@@ -107,7 +117,7 @@ public class Player extends User {
         {
             if(All.elementAt(i).getAvailable_hours()>=hours && All.elementAt(i).getLocation().equalsIgnoreCase(this.getD_loc()))
             {
-                System.out.println( All.elementAt(i).getName());
+                System.out.println( "name: "+ All.elementAt(i).getName()+ " location: "+All.elementAt(i).getLocation()+" price per hour: "+All.elementAt(i).getPrice_per_hour());
                 return;
             }
 
@@ -201,24 +211,5 @@ public class Player extends User {
         }
         return flag;
     }
-    /**
-     * Send Invitations
-     * @param player_email email that you will sent to it the invitation
-     * @param all_user vector contain all users data
-     * @param all_invitations vector of all invitations
-     */
-    public void send_invitation(String player_email,Vector<User>all_user ,Vector<String> all_invitations)
-    {
-        Scanner scan=new Scanner(System.in);
-        for(int i=0;i<all_user.size();i++)
-        {
-            if(all_user.elementAt(i).getEmail().equalsIgnoreCase(player_email))
-            {
-                all_invitations.add(player_email);
-                System.out.println("mail send to: "+player_email);
-            }
-        }
-    }
-
 
 }

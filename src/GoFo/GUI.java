@@ -7,6 +7,7 @@ public class GUI {
     private Vector<Playground> all_playground = new Vector<Playground>();
     private Vector<Booking_Struct> all_bookings = new Vector<Booking_Struct>();
     private Vector<String> all_invitations=new Vector<String>();
+
     private String Current_User_type; //The Type of User has login now
     private String Current_User_name;
     private Scanner int_scan ;
@@ -20,10 +21,12 @@ public class GUI {
      * @param Password the password of the user trying to sign in
      * @return true or false the status of the login operation
      */
-    private boolean SignIn(String email,String Password){
+    private boolean SignIn(String email,String Password)
+    {
         //Sign In
-        String m,p;
-        for (int i=0 ; i<all_users.size();i++){
+        String m,p;//variable to store the login data and compare it
+        for (int i=0 ; i<all_users.size();i++)
+        {
             m=all_users.elementAt(i).getEmail().toString();
             p=all_users.elementAt(i).getPass().toString();
 
@@ -96,7 +99,8 @@ public class GUI {
             choice = int_scan.nextInt();
             if (choice >= 1 && choice <=3)
             {
-                switch (choice) {
+                switch (choice)
+                {
                     case 1:
                         //Sign In
                         String mail, pass;
@@ -113,13 +117,16 @@ public class GUI {
                         //After Sign In
                         if (loged)
                         {
-                            if (Current_User_type.equalsIgnoreCase("PlaygroundOwner")) {
+                            if (Current_User_type.equalsIgnoreCase("PlaygroundOwner"))
+                            {
                                 boolean flag1 = true;
 
                                     //Welcome
                                     Playground_Owner owner = new Playground_Owner();
-                                    for (int i = 0; i < all_users.size(); i++) {
-                                        if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
+                                    for (int i = 0; i < all_users.size(); i++)
+                                    {
+                                        if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name))
+                                        {
                                             owner.set_name(all_users.elementAt(i).getName());
                                             owner.set_id(all_users.elementAt(i).getId());
                                             owner.set_email(all_users.elementAt(i).getEmail());
@@ -131,7 +138,8 @@ public class GUI {
                                         }
                                     }
                                     //Menu
-                                while (flag1) {
+                                while (flag1)
+                                {
                                     System.out.println("welcome to playground system");
                                 String tem = "1-add playground request \n2-set available hours \n3-view booking \n4-check money \n5-Back";
                                     System.out.println(tem);
@@ -139,12 +147,14 @@ public class GUI {
                                     System.out.println("Your Choice: ");
                                     choice = int_scan.nextInt();
 
-                                    if (choice >= 1 && choice <= 5) {
+                                    if (choice >= 1 && choice <= 5)
+                                    {
                                         Playground play = new Playground();
                                         float f;
                                         int i;
                                         String in;
-                                        switch (choice) {
+                                        switch (choice)
+                                        {
                                             case 1:
                                                 //add playground request
                                                 string_scan = new Scanner(System.in);
@@ -165,7 +175,8 @@ public class GUI {
 
                                                 //get owner name from user vector
                                                 for (i = 0; i < all_users.size(); i++) {
-                                                    if (all_users.elementAt(i).getEmail().equalsIgnoreCase(mail)) {
+                                                    if (all_users.elementAt(i).getEmail().equalsIgnoreCase(mail))
+                                                    {
                                                         play.setOwner(all_users.elementAt(i).getName());
                                                     }
                                                 }
@@ -210,7 +221,8 @@ public class GUI {
                                 Admin my_admin = new Admin();
                                 for (int i = 0; i < all_users.size(); i++)
                                 {
-                                    if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name)) {
+                                    if (all_users.elementAt(i).getName().equalsIgnoreCase(Current_User_name))
+                                    {
                                         my_admin.set_name(all_users.elementAt(i).getName());
                                         my_admin.set_id(all_users.elementAt(i).getId());
                                         my_admin.set_email(all_users.elementAt(i).getEmail());
@@ -261,15 +273,15 @@ public class GUI {
                                         my_player.set_type(all_users.elementAt(i).getType());
                                         }
                                 }
-                                my_player.Show_Inbox(all_invitations);
                                 while (flag2)
                                 {
-                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_playground\n3- display_nearest_playground\n4- show_all_playgrounds\n5- send_invitation\n6-Back");
+                                    System.out.println("Welcome to player system\n1- book_playground\n2- display_nearest_playground_by hours\n3- display_nearest_playground_ location\n4- show_all_playgrounds\n5- send_invitation\n6-show inbox\n7- back");
                                     System.out.println("Your Choice: ");
                                     choice = int_scan.nextInt();
-                                    if (choice >= 1 && choice <= 8)
+                                    if (choice >= 1 && choice <= 7)
                                     {
-                                        switch (choice) {
+                                        switch (choice)
+                                        {
                                             case 1:
                                                 my_player.book_playground(all_bookings, all_playground, all_users);
                                                 break;
@@ -287,14 +299,33 @@ public class GUI {
                                             case 5:
                                                 System.out.println("enter the player email");
                                                 String email = string_scan.nextLine();
-                                                my_player.send_invitation(email, all_users,all_invitations);
+                                                String temp="";
+                                                for(int i=0;i<all_users.size();i++)
+                                                {
+                                                    if(all_users.elementAt(i).getEmail().equalsIgnoreCase(email))
+                                                    {
+                                                        temp="to :" +email+" ->from :" + Current_User_name +" i invent u to join me in my team";
+                                                        all_invitations.add(temp);
+                                                        System.out.println("mail send to: "+email);
+                                                    }
+                                                }
+                                                break;
                                             case 6:
+                                                my_player.Show_Inbox(all_invitations);
+                                                break;
+                                            case 7:
                                                 flag2=false;
                                                 break;
                                         }
                                     }
                                 }
                             }
+                        }
+                        else
+                        {
+                            System.out.println("------------------------");
+                            System.out.println("invalid data try again");
+                            System.out.println("------------------------");
                         }
                         break;
                     case 2:
@@ -306,13 +337,13 @@ public class GUI {
                         break;
 
 
-                }
-            }
+                }//the of switch
+            }//the end of that take three choice
                else
                {
                     System.out.println("You Entered Wrong Choice");
                }
-            }
+            }//the end of while that take flag
 
-        }
-    }
+        }//the end of function main menu
+    }//the of class
